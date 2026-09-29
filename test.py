@@ -1,18 +1,23 @@
 import random
+
+#valid input or not
 def coordinates(a):
     if a.isdigit():
         return True
     else:
         print("Invalid coordinate")
 
-carCounter=0
-lineCounter=0
-BIGlist=[]
-mines=[]
+#variables
+guess = None
+carCounter = 0
+lineCounter = 0
+BIGlist = []
+mines = []
 
+#main stuff
 while True:
-    x= input("width: ")
-    y= input("height: ")
+    x= input("Width: ")
+    y= input("Height: ")
     
     if coordinates(x) and coordinates(y):
 
@@ -25,22 +30,24 @@ while True:
                 lineCounter = lineCounter+1
             BIGlist.append("0 ")
             carCounter = carCounter+1
-        guess = input("guess a coordinate: ")
+        guess = input("Guess a coordinate: ")
         numbers = [1, 2, 3]
 
    
     while guess == "flag":
-         print("type guess to guess")
-         if flag == "guess":
-              break
+        print("Type guess to guess")
          
-         flag = input("Choose a flag cordinate: ")
-         if flag in BIGlist:
-              BIGlist[flag] = "F"
+        flag = input("Choose a flag cordinate: ")
+        if flag in BIGlist:
+            BIGlist[flag] = "F"
+        elif flag == "guess":
+            break
+        guess = input("Guess a coordinate: ")
         
 
     if guess in mines:
         restart = input("You exploded do wish to play again?\n yes/no")
+        restart = restart.lower()
     elif guess != mines:
          guess = input()
     else:
@@ -50,4 +57,4 @@ while True:
     while lineCounter <= int(y):
         print(BIGlist[x*lineCounter-1:x+(x*lineCounter)])
     if guess == "end" or restart == "no":
-            break
+        break

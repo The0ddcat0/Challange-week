@@ -4,19 +4,28 @@ def coordinates(a):
         return True
     else:
         print("Invalid input")
-carCounter=0
-lineCounter=0
-BIGlist=[]
-mines=[]
 while True:
+    BIGlist=[]
+    mines=[]
+    carCounter=0
+    lineCounter=0
+
+
     x= input("width: ")
     y=input("height: ")
-    
+    mineNmr=input("number of mines: ")
+    i=0
+    x=int(x)
+    y=int(y)
+    while i >=int(mineNmr):
+         randMine =f"{randint(0,x)}{randint()}"
+         mines.append()
+
     if coordinates(x) and coordinates(y):
 
-        totalSize=int(x)**int(y)
+        totalSize=x**y
         print("To end the game type: end")
-        x=int(x)
+        
         while carCounter**lineCounter <= totalSize:
             if carCounter>=x:
                 carCounter=0

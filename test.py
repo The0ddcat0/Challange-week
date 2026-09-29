@@ -1,13 +1,14 @@
 import random
 
 def coordinates(a):
-    if a.isdigit():
+    a = a.split(":")
+    if a.isdigit(a[0]) and a.isdigit(a[1]):
         return True
     else:
-        print("Invalid input")
+        print("Invalid coordinate")
 
 print("To end the game type: end")
-guess = input("Choose the coordinates or flag: ")
+guess = input("Choose the coordinates or flag: x:y")
 
 numbers = [1, 2, 3]
 

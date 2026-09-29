@@ -1,4 +1,9 @@
-"""
-A 10 by 10 grid
-with number 1 to 
-"""
+import random
+
+user = input("Choose the coordinates: ")
+
+numbers = [1, 2, 3]
+
+while True:
+    if user == "end":
+        break

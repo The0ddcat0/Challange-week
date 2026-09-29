@@ -22,7 +22,7 @@ while True:
          
          flag = input("Choose a flag cordinate: ")
          if flag in grid:
-              print(f"flag {grid}")
+              grid[flag] = "F"
         
 
     if guess in mines:

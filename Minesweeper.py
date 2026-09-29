@@ -7,6 +7,7 @@ def coordinates(a):
 carCounter=0
 lineCounter=0
 BIGlist=[]
+mines=[]
 while True:
     x= input("width: ")
     y=input("height: ")
@@ -22,7 +23,28 @@ while True:
                 lineCounter= lineCounter+1
             BIGlist.append("0 ")
             carCounter= carCounter+1
-        user = input("guess a coordinate: ")
+        guess = input("guess a coordinate: ")
         numbers = [1, 2, 3]
+
+   
+    while guess == "flag":
+         print("type guess to guess")
+         if flag == "guess":
+              break
+         
+         flag = input("Choose a flag cordinate: ")
+         if flag in BIGlist:
+              BIGlist[flag] = "F"
+        
+
+    if guess in mines:
+        restart = input("You exploded do wish to play again?\n yes/no")
+    elif guess != mines:
+         guess = input()
+    else:
+         guess = input(f"There are {mines} around {guess}")
+    lineCounter=0
+    while lineCounter<=int(y):
         print(BIGlist[x*lineCounter-1:x+(x*lineCounter)])
-        break
+    if guess == "end" or restart == "no":
+            break

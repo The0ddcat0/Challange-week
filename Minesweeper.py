@@ -6,10 +6,17 @@ def coordinates(a):
     else:
         print("Invalid input")
 
+def guess_flag(a):
+    a = a.split(" ")    
+    if a.isdigit(a[0]) and a.isdigit(a[1]):
+        return True
+    else:
+        print("big balls by ac/dc")
+
 mineNmr = 3
-cashDollerMoney=0
-bigCLICKS=1
-bigClickSize=2
+cashDollerMoney =0 
+bigCLICKS = 1
+bigClickSize = 2
 
 while True:
     BIGlist = []

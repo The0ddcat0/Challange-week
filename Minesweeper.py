@@ -65,7 +65,7 @@ while True:
 
     if guess in mines:
         restart = input("You exploded do wish to play again?\n yes/no")
-    elif guess != mines:
+    elif guess not in mines:
          guess = input()
     else:
          guess = input(f"There are {mines} around {guess}")

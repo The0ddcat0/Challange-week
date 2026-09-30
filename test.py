@@ -58,3 +58,10 @@ while True:
         print(BIGlist[x*lineCounter-1:x+(x*lineCounter)])
     if guess == "end" or restart == "no":
         break
+"""
+number of mines increase money after victory money can be used to buy items that increase amount of mines and size of click for more money item that clears 
+bosses?!?!?
+
+
+
+"""

@@ -5,6 +5,10 @@ def coordinates(a):
         return True
     else:
         print("Invalid input")
+mineNmr = 3
+cashDollerMoney=0
+bigCLICKS=1
+bigClickSize=2
 
 while True:
     BIGlist = []
@@ -15,16 +19,16 @@ while True:
 
     x = input("Width: ")
     y = input("Height: ")
-    mineNmr = input("number of mines: ")
+    
     i = 0
-    x = int(x)
-    y = int(y)
+
     while i >= int(mineNmr):
-         randMine = f"{randint(0,x)}{randint()}"
+         randMine = f"{random.randint(0,x)}{random.randint()}"
          mines.append()
 
     if coordinates(x) and coordinates(y):
-
+        x = int(x)
+        y = int(y)
         totalSize=x**y
         print("To end the game type: end")
         
@@ -59,3 +63,5 @@ while True:
         print(BIGlist[x*lineCounter-1:x+(x*lineCounter)])
     if guess == "end" or restart == "no":
             break
+    if 0 not in BIGlist:
+         money = money +((mineNmr**5)//(x**y))

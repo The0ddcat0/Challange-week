@@ -21,8 +21,8 @@ bigClickSize = 2
 while True:
     BIGlist = []
     mines = []
-    carCounter = 0
-    lineCounter = 0
+    carCounter = 1
+    lineCounter = 1
 
 
     x = input("Width: ")
@@ -39,16 +39,17 @@ while True:
         y = int(y)
         totalSize=x**y
         print("To end the game type: end")
-        
-        while carCounter**lineCounter <= totalSize + 1:
+       
+        while lineCounter <=y:
             if carCounter >= x:
                 carCounter = 0
                 lineCounter = lineCounter + 1
             BIGlist.append("0 ")
             carCounter = carCounter + 1
+            print(carCounter)
         guess = input("guess a coordinate: ")
     print(BIGlist)
-
+    print(mines)
    
     while guess == "flag":
         print("type guess to guess")

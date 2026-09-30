@@ -5,6 +5,7 @@ def coordinates(a):
         return True
     else:
         print("Invalid input")
+        return False
 
 def guess_flag(a):
     a = a.split(" ")    
@@ -12,6 +13,9 @@ def guess_flag(a):
         return True
     else:
         print("big balls by ac/dc")
+        return False
+
+        
 
 mineNmr = 3
 cashDollerMoney =0 
@@ -35,6 +39,7 @@ while True:
     while i >= int(mineNmr):
          randMine = f"{random.randint(0,x)} {random.randint(0,y)}"
          mines.append(randMine)
+
          
     if coordinates(x) and coordinates(y):
         x = int(x)
@@ -49,12 +54,13 @@ while True:
             BIGlist.append("0 ")
             carCounter = carCounter + 1
             #print(carCounter)
-        guess = input("guess a coordinate: ")
+        guess = input("Guess a coordinate: x y")
     #print(BIGlist)
     #print(mines)
    
+
     while guess == "flag":
-        print("type guess to guess")
+        print("Type guess to guess")
 
         flag = input("Choose a flag cordinate: ")
         if flag in BIGlist:
@@ -69,12 +75,14 @@ while True:
          guess = input()
     else:
          guess = input(f"There are {mines} around {guess}")
+
+
     lineCounter = 0
     while lineCounter <= int(y):
         print(BIGlist[x*lineCounter:x+(x*lineCounter)])
         lineCounter += 1
     if guess == "end" or restart == "no":
-            break
+        break
     if 0 not in BIGlist:
          cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
          mineNmr += 1

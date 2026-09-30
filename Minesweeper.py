@@ -21,14 +21,14 @@ while True:
     y = input("Height: ")
     
     i = 0
-    x = int(x)
-    y = int(y)
+
     while i >= int(mineNmr):
-         randMine = f"{randint(0,x)}{randint()}"
+         randMine = f"{random.randint(0,x)}{random.randint()}"
          mines.append()
 
     if coordinates(x) and coordinates(y):
-
+        x = int(x)
+        y = int(y)
         totalSize=x**y
         print("To end the game type: end")
         

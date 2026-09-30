@@ -64,4 +64,4 @@ while True:
     if guess == "end" or restart == "no":
             break
     if 0 not in BIGlist:
-         money = money +(mines//(x**y))
+         money = money +((mineNmr**5)//(x**y))

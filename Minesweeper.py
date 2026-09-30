@@ -5,7 +5,7 @@ def coordinates(a):
         return True
     else:
         print("Invalid input")
-        
+
 mineNmr = 3
 cashDollerMoney=0
 bigCLICKS=1
@@ -24,7 +24,7 @@ while True:
     i = 0
 
     while i >= int(mineNmr):
-         randMine = f"{random.randint(0,x)}{random.randint()}"
+         randMine = f"{random.randint(0,x)} {random.randint(0,y)}"
          mines.append(randMine)
          
     if coordinates(x) and coordinates(y):
@@ -33,14 +33,14 @@ while True:
         totalSize=x**y
         print("To end the game type: end")
         
-        while carCounter**lineCounter <= totalSize:
-            if carCounter>=x:
-                carCounter=0
-                lineCounter= lineCounter+1
+        while carCounter**lineCounter <= totalSize + 1:
+            if carCounter >= x:
+                carCounter = 0
+                lineCounter = lineCounter + 1
             BIGlist.append("0 ")
-            carCounter = carCounter+1
+            carCounter = carCounter + 1
         guess = input("guess a coordinate: ")
-        numbers = [1, 2, 3]
+    print(BIGlist)
 
    
     while guess == "flag":

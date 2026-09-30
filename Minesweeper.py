@@ -32,15 +32,14 @@ while True:
     
     i = 0
 
-    while i >= int(mineNmr):
-         randMine = f"{random.randint(0,x)} {random.randint(0,y)}"
-         mines.append(randMine)
+
          
     if coordinates(x) and coordinates(y):
         x = int(x)
         y = int(y)
         totalSize=x**y
         print("To end the game type: end")
+       
        
         while lineCounter <=y:
             if carCounter >= x:
@@ -62,7 +61,10 @@ while True:
         elif flag == "guess":
             break
         
-
+    while i >= int(mineNmr):
+         randMine = f"{random.randint(0,x)} {random.randint(0,y)}"
+         mines.append(randMine) 
+    print(mines)
     if guess in mines:
         restart = input("You exploded do wish to play again?\n yes/no")
     elif guess != mines:

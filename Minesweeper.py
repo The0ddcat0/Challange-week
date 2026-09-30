@@ -17,6 +17,8 @@ mineNmr = 3
 cashDollerMoney =0 
 bigCLICKS = 1
 bigClickSize = 2
+restart = None
+guess = None
 
 while True:
     BIGlist = []
@@ -46,10 +48,10 @@ while True:
                 lineCounter = lineCounter + 1
             BIGlist.append("0 ")
             carCounter = carCounter + 1
-            print(carCounter)
+            #print(carCounter)
         guess = input("guess a coordinate: ")
-    print(BIGlist)
-    print(mines)
+    #print(BIGlist)
+    #print(mines)
    
     while guess == "flag":
         print("type guess to guess")
@@ -69,8 +71,10 @@ while True:
          guess = input(f"There are {mines} around {guess}")
     lineCounter = 0
     while lineCounter <= int(y):
-        print(BIGlist[x*lineCounter-1:x+(x*lineCounter)])
+        print(BIGlist[x*lineCounter:x+(x*lineCounter)])
+        lineCounter += 1
     if guess == "end" or restart == "no":
             break
     if 0 not in BIGlist:
-         money = money +((mineNmr**5)//(x**y))
+         cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
+         mineNmr += 1

@@ -58,14 +58,12 @@ while True:
             BIGlist.append("0 ")
             carCounter = carCounter + 1
             #print(carCounter)
-        guess = input("guess a coordinate: ")
         guess = input("Guess a coordinate: x y")
     #print(BIGlist)
     #print(mines)
    
 
     while guess == "flag":
-        print("type guess to guess")
         print("Type guess to guess")
 
         flag = input("Choose a flag cordinate: ")
@@ -80,7 +78,6 @@ while True:
     print(mines)
     if guess in mines:
         restart = input("You exploded do wish to play again?\n yes/no")
-    elif guess != mines:
     elif guess not in mines:
          guess = input()
     else:
@@ -92,7 +89,6 @@ while True:
         print(BIGlist[x*lineCounter:x+(x*lineCounter)])
         lineCounter += 1
     if guess == "end" or restart == "no":
-            break
         break
     if 0 not in BIGlist:
          cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))

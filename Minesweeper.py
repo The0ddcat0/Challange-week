@@ -5,6 +5,10 @@ def coordinates(a):
         return True
     else:
         print("Invalid input")
+mineNmr = 3
+cashDollerMoney=0
+bigCLICKS=1
+bigClickSize=2
 
 while True:
     BIGlist = []
@@ -15,7 +19,7 @@ while True:
 
     x = input("Width: ")
     y = input("Height: ")
-    mineNmr = input("number of mines: ")
+    
     i = 0
     x = int(x)
     y = int(y)
@@ -59,3 +63,5 @@ while True:
         print(BIGlist[x*lineCounter-1:x+(x*lineCounter)])
     if guess == "end" or restart == "no":
             break
+    if 0 not in BIGlist:
+         money = money +(mines//(x**y))

@@ -5,6 +5,7 @@ def coordinates(a):
         return True
     else:
         print("Invalid input")
+        
 mineNmr = 3
 cashDollerMoney=0
 bigCLICKS=1

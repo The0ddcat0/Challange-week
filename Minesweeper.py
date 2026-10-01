@@ -113,7 +113,7 @@ while True:
             else:
                 flagX,flagY = flag.split(" ")       
                 trueFlag = int(flagX) + (int(flagY)-1) ** x
-                flag = int(flagX) -1+ (int(flagY)-1)  ** x
+                flag = int(flagX) -1 + (int(flagY)-1)  ** x
                 BIGlist[flag] = "F"
              
         guessX,guessY = guess.split(" ")

@@ -2,7 +2,7 @@ import random
 
 def shop():
     global cashDollerMoney
-    done = "y"
+    done = "n"
     print("""
     (`-').-> (`-').->            _  (`-') 
     ( OO)_   (OO )__      .->    \-.(OO ) 
@@ -25,7 +25,7 @@ def shop():
     oos1 = True
     oos2 = True
     oos3 = True
-    while done != "Y "or done != "y":
+    while done == "N" or done == "n":
         purchase= input()
         if purchase == 1 and oos1:
             cashDollerMoney = cashDollerMoney - itemPrice[shop1]
@@ -38,6 +38,7 @@ def shop():
             cashDollerMoney = cashDollerMoney - itemPrice[shop3]
             items = items + allItems[shop3]
         if purchase == 4:
+            cashDollerMoney = cashDollerMoney - 100
             mineNmr = mineNmr + 1
             amountOfBombsPurchased = amountOfBombsPurchased + 1
         done = input("are you done shoping: Y or N")
@@ -59,6 +60,8 @@ bigCLICKS = 1
 bigClickSize = 2
 restart = ""
 guess = ""
+organs= ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
+organPrice=[297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
 
 while True:
     BIGlist = []
@@ -106,13 +109,13 @@ while True:
                 lineCounter += 1              
             flag = input("Choose a flag cordinate x y: ")
             if flag == "guess":
-                break
+                guess = input("Guess a coordinate x y: ")   
             else:
                 flagX,flagY = flag.split(" ")       
                 trueFlag = int(flagX) + (int(flagY)-1) ** x
                 flag = int(flagX) -1+ (int(flagY)-1)  ** x
                 BIGlist[flag] = "F"
-        guess = input("Guess a coordinate x y: ")    
+             
         guessX,guessY = guess.split(" ")
         trueGuess = int(guessX) + (int(guessY)-1) ** x
         if trueGuess in mines:
@@ -125,6 +128,23 @@ while True:
         if guess == "end" or restart == "no":
             break
     if "0" not in BIGlist:
-        cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
+       # cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
         mineNmr += 1
         shop()
+        while cashDollerMoney <0:
+            print("uh oh you defaulted")
+            i=0
+            count=0
+            if cashDollerMoney+organPrice[i] >= 0:
+                print (f"the loan shark took your {organs[i]} for {organPrice[i]}")
+                cashDollerMoney=cashDollerMoney+organPrice[i]
+                organs[i]="hole"
+                organPrice[i]=0
+            if i > len(organs) and cashDollerMoney<0:
+                if organPrice[count]>0:
+                    print (f"the loan shark took your {organs[count]} for {organPrice[count]}")
+                    cashDollerMoney=cashDollerMoney+organPrice[count]
+                    organs[count]="hole"
+                    organPrice[count]=0
+            
+            i=i+1

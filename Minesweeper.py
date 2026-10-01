@@ -63,8 +63,8 @@ mineNmr = 3
 cashDollerMoney =0 
 bigCLICKS = 1
 bigClickSize = 2
-restart = None
-guess = None
+restart = ""
+guess = ""
 
 while True:
     BIGlist = []
@@ -119,9 +119,10 @@ while True:
 #dis mijn guess bs dus als het niet werkt stuur msg    
     if guess_flag(guess):
         guess = guess.split(" ")
+        guess_x = guess[0]
+        guess_y = guess[1]
 
-    guess_x = guess[0]
-    guess_y = guess[1]
+    #ja idk waar de mines zitten en kan niet een list splitten
     mines = mines.split(" ")
 
     if guess_x in mines[0] and guess_y in mines[1]:

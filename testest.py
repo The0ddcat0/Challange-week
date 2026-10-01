@@ -24,9 +24,13 @@ guess_y = guess[1]
 minestest = minestest.split(" ")
 
 if guess_x in minestest[0] and guess_y in minestest[1]:
-    print("shit works")
+    restart = input("You exploded do wish to play again?\n yes/no")
+elif guess_x in minestest[0]:
+    print("bom nearby the y")
+elif guess_y in minestest[1]:
+    print("bom nearby the x")
 else:
-    print("burn")
+    print("theres no bomb")    
 
 #print(minestest)
 #print(f"{guess_x} {guess_y}")

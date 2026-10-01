@@ -1,0 +1,49 @@
+organs=[a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+a pint of blood","
+ligaments","
+"bones","
+64,516 dm of skin","
+64,516 dm of skin","
+64,516 dm of skin"
+cornea","
+cornea","
+"heart",
+liver","
+kidney","
+kidney","
+lung","
+lung","
+]
+
+organPrice=[297.46,
+297.46,
+297.46,
+297.46,
+297.46,
+297.46,
+297.46,
+297.46,
+297.46,
+297.46,
+4758,62,
+6611.25, 
+7932.33,
+7932.33,
+7932.33
+19830.83,
+19830.83,
+56195.62, 
+137504.12,  
+138815.77,
+138815.77,
+272343.33,
+272343.33,
+]

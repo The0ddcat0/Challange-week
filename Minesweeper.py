@@ -25,7 +25,7 @@ def shop():
     oos1 = True
     oos2 = True
     oos3 = True
-    while done!="Y "or done!="y":
+    while done != "Y "or done != "y":
         purchase= input()
         if purchase == 1 and oos1:
             cashDollerMoney = cashDollerMoney - itemPrice[shop1]
@@ -49,7 +49,7 @@ def coordinates(a):
         print("Invalid input")
         return False
         
-amountOfBombsPurchased=0
+amountOfBombsPurchased = 0
 items = []
 allItems = ["a","b","c","d"]
 itemPrice = [1,2,3,4]
@@ -76,16 +76,16 @@ while True:
     if coordinates(x) and coordinates(y):
         x = int(x)
         y = int(y)
-        totalSize=x**y
+        totalSize = x**y
         print("To end the game type: end")
         while i <= int(mineNmr):
              randMine = (random.randint(1,y)-1)**x+random.randint(1,x)
              mines.insert(0,randMine)
-             i+=1
+             i += 1
              print(mines)
              print (i)        
        
-        while lineCounter <=y:
+        while lineCounter <= y:
             if carCounter >= x:
                 carCounter = 0
                 lineCounter = lineCounter + 1
@@ -108,30 +108,19 @@ while True:
             if flag == "guess":
                 break
             else:
-                flagX,flagY= flag.split(" ")       
-                trueFlag= int(flagX)+(int(flagY)-1)**x
-                flag= int(flagX)-1+(int(flagY)-1)*x
-                BIGlist[flag] = "F "
+                flagX,flagY = flag.split(" ")       
+                trueFlag = int(flagX) + (int(flagY)-1) ** x
+                flag = int(flagX) -1+ (int(flagY)-1)  ** x
+                BIGlist[flag] = "F"
         guess = input("Guess a coordinate x y: ")    
-        guessX,guessY= guess.split(" ")
-        trueGuess= int(guessX)+(int(guessY)-1)**x
+        guessX,guessY = guess.split(" ")
+        trueGuess = int(guessX) + (int(guessY)-1) ** x
         if trueGuess in mines:
             restart = input("You exploded do wish to play again?\n yes/no")
-            """elif guess_x in mines[0]:
-               print("bom on the y-axis")
-            elif guess_y in mines[1]:
-                print("bom on the x-axis")"""  
+
         else:
             print("you live")
-            BIGlist[trueGuess]= "~"
-
-    #    if guess in mines:
-    #        restart = input("You exploded do wish to play again?\n yes/no")
-    #    elif guess not in mines:
-    #         guess = input()
-    #    else:
-    #         guess = input(f"There are {mines} around {guess}")
-
+            BIGlist[trueGuess] = "~"
 
         if guess == "end" or restart == "no":
             break

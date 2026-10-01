@@ -11,8 +11,9 @@ guess = None
 oos1= True
 oos2= True
 oos3= True
-
-
+x=2
+y=2
+BIGlist=[0,0,0,0,0,0,0]
 amountOfBombsPurchased=0
 items=[]
 allItems=["a","b","c","d"]
@@ -56,7 +57,16 @@ def shop():
             mineNmr=mineNmr+1
             amountOfBombsPurchased=amountOfBombsPurchased+1
         done = input("are you done shoping: Y or N")
-shop()
-        
+
+guess="flag"
+while guess == "flag":
+        flag = input("Choose a flag cordinate x y: ")
+        flag= int(flag[0])-1+(int(flag[2])-1)*x
+        print (flag)
+        BIGlist[flag] = "F "
+        print(BIGlist)
+        if flag == "guess":
+            break
+
 
 

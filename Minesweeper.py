@@ -107,10 +107,11 @@ while True:
             flag = input("Choose a flag cordinate x y: ")
             if flag == "guess":
                 break
+            #als je 2 keer invuld dan zegt het dat het dat het out of range is
             else:
                 flagX,flagY = flag.split(" ")       
                 trueFlag = int(flagX) + (int(flagY)-1) ** x
-                flag = int(flagX) -1+ (int(flagY)-1)  ** x
+                flag = int(flagX) -1 + (int(flagY)-1)  ** x
                 BIGlist[flag] = "F"
         guess = input("Guess a coordinate x y: ")    
         guessX,guessY = guess.split(" ")

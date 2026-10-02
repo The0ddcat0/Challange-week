@@ -2,6 +2,9 @@ import random
 
 def shop():
     global cashDollerMoney
+    global mineNmr
+    global amountOfBombsPurchased
+    global allItems,itemPrice
     done = "n"
     print("""
     (`-').-> (`-').->            _  (`-') 
@@ -27,17 +30,17 @@ def shop():
     oos3 = True
     while done == "N" or done == "n":
         purchase= input()
-        if purchase == 1 and oos1:
+        if purchase == "1" and oos1:
             cashDollerMoney = cashDollerMoney - itemPrice[shop1]
             items = items + allItems[shop1]
             oos1
-        if purchase == 2 and oos2:
+        if purchase == "2" and oos2:
             cashDollerMoney = cashDollerMoney - itemPrice[shop2]
             items=items+allItems[shop2]
-        if purchase == 3and oos3:
+        if purchase == "3" and oos3:
             cashDollerMoney = cashDollerMoney - itemPrice[shop3]
             items = items + allItems[shop3]
-        if purchase == 4:
+        if purchase == "4":
             cashDollerMoney = cashDollerMoney - 100
             mineNmr = mineNmr + 1
             amountOfBombsPurchased = amountOfBombsPurchased + 1
@@ -131,8 +134,10 @@ while True:
        # cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
         mineNmr += 1
         shop()
+        if cashDollerMoney<0:
+            print("uh oh you defaulted")    
         while cashDollerMoney <0:
-            print("uh oh you defaulted")
+        
             i=0
             count=0
             if cashDollerMoney+organPrice[i] >= 0:

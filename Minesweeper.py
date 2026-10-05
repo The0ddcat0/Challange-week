@@ -88,8 +88,7 @@ while True:
              randMine = (random.randint(1,y)-1)**x+random.randint(1,x)
              mines.insert(0,randMine)
              i += 1
-             print(mines)
-             print (i)        
+    
        
         while lineCounter <= y:
             if carCounter >= x:

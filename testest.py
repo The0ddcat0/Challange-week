@@ -49,15 +49,26 @@ def shop():
 def coordinates(a):
     if a.isdigit():
         return True
-    else:
-        print("Invalid input")
-        return False
-        
+    print("Invalid input")
+    return False
+
+def make_mines(x, y):
+    mines = []
+    mineNmr = 3
+    i = 1
+
+    totalSize = x * y
+    while i <= int(mineNmr):
+        randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
+        mines.insert(0, randMine)
+        i += 1    
+    return totalSize
+
 amountOfBombsPurchased = 0
 items = []
 allItems = ["a","b","c","d"]
 itemPrice = [1,2,3,4]
-mineNmr = 3
+#mineNmr = 3
 cashDollerMoney =0 
 bigCLICKS = 1
 bigClickSize = 2
@@ -66,89 +77,94 @@ guess = ""
 organs= ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
 organPrice=[297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
 
-while True:
-    BIGlist = []
-    mines = []
-    carCounter = 1
-    lineCounter = 1
-
-
-    x = input("Width: ")
-    y = input("Height: ")
-    
-    i = 1
-
-#
-    if coordinates(x) and coordinates(y):
-        x = int(x)
-        y = int(y)
-        totalSize = x*y
-        print("To end the game type: end")
-        while i <= int(mineNmr):
-             randMine = (random.randint(1,y)-1)*x+random.randint(1,x)
-             mines.insert(0,randMine)
-             i += 1
-    
-       
-        while lineCounter <= y:
-            if carCounter >= x:
-                carCounter = 0
-                lineCounter = lineCounter + 1
-            BIGlist.append("0")
-            carCounter = carCounter + 1
-            #print(carCounter)
-    while "0" in BIGlist:
-        lineCounter = 0
-        while lineCounter <= int(y):
-            print(BIGlist[x*lineCounter:x+(x*lineCounter)])
-            lineCounter += 1  
-        #print(BIGlist)
-        guess = input("Guess a coordinate x y: ")    
-        while guess == "flag":
-            lineCounter = 0
-            while lineCounter <= int(y):    
-                print(BIGlist[x*lineCounter:x+(x*lineCounter)])
-                lineCounter += 1              
-            flag = input("Choose a flag cordinate x y: ")
-            if flag == "guess":
-                guess = input("Guess a coordinate x y: ")   
-            else:
-                flagX,flagY = flag.split(" ")       
-                trueFlag = int(flagX) + (int(flagY)-1) * x
-                flag = int(flagX) -1 + (int(flagY)-1)  * x
-                BIGlist[flag] = "F"
-             
-        guessX,guessY = guess.split(" ")
-        trueGuess = int(guessX) + (int(guessY)-1) * x
-        if trueGuess in mines:
-            restart = input("You exploded do wish to play again?\n yes/no")
-
-        else:
-            print("you live")
-            BIGlist[trueGuess] = "~"
-
-        if guess == "end" or restart == "no":
-            break
-    if "0" not in BIGlist:
-       # cashDollerMoney = cashDollerMoney +((mineNmr*5)//(x*y))
-        mineNmr += 1
-        shop()
-        if cashDollerMoney<0:
-            print("uh oh you defaulted")    
-        while cashDollerMoney <0:
+def main():
+    while True:
+        BIGlist = []
+        mines = []
+        carCounter = 1
+        lineCounter = 1
         
-            i=0
-            count=0
-            if cashDollerMoney+organPrice[i] >= 0:
-                print (f"the loan shark took your {organs[i]} for {organPrice[i]}")
-                cashDollerMoney=cashDollerMoney+organPrice[i]
-                organs[i]="hole"
-                organPrice[i]=0
-            if i > len(organs) and cashDollerMoney<0:
-                if organPrice[count]>0:
-                    print (f"the loan shark took your {organs[count]} for {organPrice[count]}")
-                    cashDollerMoney=cashDollerMoney+organPrice[count]
-                    organs[count]="hole"
-                    organPrice[count]=0
+        i = 1
+
+#amound of mines
+        x = input("Width: ")
+        y = input("Height: ")
+        if coordinates(x) and coordinates(y):
+            x = int(x)
+            y = int(y)
+            make_mines(x, y)
+                # totalSize = x * y
+                # while i <= int(mineNmr):
+                #     randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
+                #     mines.insert(0, randMine)
+                #     i += 1
+        
+#creates field        
+            while lineCounter <= y:
+                if carCounter >= x:
+                    carCounter = 0
+                    lineCounter = lineCounter + 1
+                BIGlist.append("0")
+                carCounter = carCounter + 1
+                #print(carCounter)
+        while "0" in BIGlist:
+            lineCounter = 0
+            while lineCounter <= int(y):
+                print(BIGlist[x * lineCounter: x + (x * lineCounter)])
+                lineCounter += 1  
+            #print(BIGlist)
+            guess = input("Guess a coordinate x y: ")
+#flag
+            while guess == "flag":
+                lineCounter = 0
+                while lineCounter <= int(y):    
+                    print(BIGlist[x * lineCounter: x + (x * lineCounter)])
+                    lineCounter += 1              
+                flag = input("Choose a flag cordinate x y: ")
+                if flag == "guess":
+                    guess = input("Guess a coordinate x y: ")   
+                else:
+                    flagX,flagY = flag.split(" ")       
+                    trueFlag = int(flagX) + (int(flagY)-1) * x
+                    flag = int(flagX) -1 + (int(flagY)-1)  * x
+                    BIGlist[flag] = "F"
+
+            #incorrect input gives false same for flag
+            #problem with trueGuess/flag 2 2 doesnt work
+            guessX,guessY = guess.split(" ")
+            trueGuess = int(guessX) + (int(guessY) - 1) * x
+            if trueGuess in mines:
+                restart = input("You exploded do wish to play again?\n yes/no")
+
+            else:
+                print("you live")
+                BIGlist[trueGuess] = "~"
+
+            if guess == "end" or restart == "no":
+                break
+        if "0" not in BIGlist:
+        # cashDollerMoney = cashDollerMoney +((mineNmr*5)//(x*y))
+            mineNmr += 1
+            shop()
+            if cashDollerMoney<0:
+                print("uh oh you defaulted")    
+            while cashDollerMoney < 0:
             
-            i=i+1
+                i = 0
+                count = 0
+                if cashDollerMoney+organPrice[i] >= 0:
+                    print (f"the loan shark took your {organs[i]} for {organPrice[i]}")
+                    cashDollerMoney=cashDollerMoney + organPrice[i]
+                    organs[i] = "hole"
+                    organPrice[i] = 0
+                if i > len(organs) and cashDollerMoney<0:
+                    if organPrice[count] > 0:
+                        print (f"the loan shark took your {organs[count]} for {organPrice[count]}")
+                        cashDollerMoney = cashDollerMoney+organPrice[count]
+                        organs[count] = "hole"
+                        organPrice[count] = 0
+                
+                i = i + 1
+
+if __name__ == "__main__":
+    main()

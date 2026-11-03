@@ -63,9 +63,8 @@ bigCLICKS = 1
 bigClickSize = 2
 restart = ""
 guess = ""
-organs= ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
-organPrice=[297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
 
+organs = {"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"ligaments":4758.62,"bones":4758.62,"64,516 dm of skin":7932.33,"64,516 dm of skin":7932.33,"64,516 dm of skin":7932.33,"cornea":19830.83,"cornea":19830.83,"liver":56195.62,"kidney":138815.77,"kidney":138815.77,"lung":272343.33,"lung":272343.33,"heart":562340.87}
 while True:
     BIGlist = []
     mines = []
@@ -136,19 +135,6 @@ while True:
         if cashDollerMoney<0:
             print("uh oh you defaulted")    
         while cashDollerMoney <0:
-        
-            i=0
-            count=0
-            if cashDollerMoney+organPrice[i] >= 0:
-                print (f"the loan shark took your {organs[i]} for {organPrice[i]}")
-                cashDollerMoney=cashDollerMoney+organPrice[i]
-                organs[i]="hole"
-                organPrice[i]=0
-            if i > len(organs) and cashDollerMoney<0:
-                if organPrice[count]>0:
-                    print (f"the loan shark took your {organs[count]} for {organPrice[count]}")
-                    cashDollerMoney=cashDollerMoney+organPrice[count]
-                    organs[count]="hole"
-                    organPrice[count]=0
-            
-            i=i+1
+            for i in organs.values():
+                if i+cashDollerMoney>=0:
+                    

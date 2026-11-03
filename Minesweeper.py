@@ -52,7 +52,19 @@ def coordinates(a):
     else:
         print("Invalid input")
         return False
-        
+
+def organtrade():
+    global cashDollerMoney,organs
+    if cashDollerMoney<0:
+        print("uh oh you defaulted")    
+    i=0
+    while i < len(organs)and cashDollerMoney<0:
+        if cashDollerMoney+list(organs.values())[i]>=0:
+            print(f"the loanshark took {list(organs.keys())[i]}")
+            organs.pop(list(organs.keys())[i])
+            cashDollerMoney=cashDollerMoney+list(organs.values())[i]
+        i+=1
+
 amountOfBombsPurchased = 0
 items = []
 allItems = ["a","b","c","d"]
@@ -64,7 +76,7 @@ bigClickSize = 2
 restart = ""
 guess = ""
 
-organs = {"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"a pint of blood":297.46,"ligaments":4758.62,"bones":4758.62,"64,516 dm of skin":7932.33,"64,516 dm of skin":7932.33,"64,516 dm of skin":7932.33,"cornea":19830.83,"cornea":19830.83,"liver":56195.62,"kidney":138815.77,"kidney":138815.77,"lung":272343.33,"lung":272343.33,"heart":562340.87}
+organs = {"a pint of blood":297.46,"a second pint of blood":297.46,"a third pint of blood":297.46,"a forth pint of blood":297.46,"a fifth pint of blood":297.46,"a sixth pint of blood":297.46,"a seventh pint of blood":297.46,"a eighth pint of blood":297.46,"a nineth pint of blood":297.46," your last pint of blood":297.46," your ligaments":4758.62,"your bones":4758.62,"64,516 dm of your skin":7932.33,"most of your skin":7932.33,"the last of your skin":7932.33,"your left cornea":19830.83,"your right cornea":19830.83,"your liver":56195.62,"left kidney":138815.77,"your right kidney":138815.77,"your left lung":272343.33,"your right lung":272343.33,"your heart":562340.87}
 while True:
     BIGlist = []
     mines = []
@@ -132,9 +144,5 @@ while True:
        # cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
         mineNmr += 1
         shop()
-        if cashDollerMoney<0:
-            print("uh oh you defaulted")    
-        while cashDollerMoney <0:
-            for i in organs.values():
-                if i+cashDollerMoney>=0:
+        organtrade()
                     

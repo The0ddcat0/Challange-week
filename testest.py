@@ -1,5 +1,3 @@
-#uhmmm de mines werken niet ik heb geen mines maar de rest werkt nu wel volgens mij
-
 import random
 
 def shop():
@@ -56,7 +54,7 @@ def coordinates(a):
 
 def make_mines(mineNmr, x, y):
     mines = []
-    i = 1
+    i = 0
 
     while i <= int(mineNmr):
         randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
@@ -65,7 +63,7 @@ def make_mines(mineNmr, x, y):
     return mines
 
 def guess_validation(a):
-    if a == "flag":
+    if a == "flag" or a == "end":
         return True
     b = a.split(" ")
     if len(b) == 2:
@@ -74,18 +72,21 @@ def guess_validation(a):
     print("Invalid input")
     return False
 
-amountOfBombsPurchased = 0
-items = []
-allItems = ["a","b","c","d"]
-itemPrice = [1,2,3,4]
-cashDollerMoney =0 
-bigCLICKS = 1
-bigClickSize = 2
-organs= ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
-organPrice=[297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
+
 
 def main():
-    while True:
+    playing = True
+    amountOfBombsPurchased = 0
+    items = []
+    allItems = ["a","b","c","d"]
+    itemPrice = [1,2,3,4]
+    cashDollerMoney = 0 
+    bigCLICKS = 1
+    bigClickSize = 2
+    organs = ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
+    organPrice = [297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
+
+    while playing:
         BIGlist = []
         mines = []
         carCounter = 1
@@ -95,18 +96,17 @@ def main():
         i = 1
 
 #amound of mines
-        x = input("Width: ")
-        y = input("Height: ")
-        if coordinates(x) and coordinates(y):
+        while True:
+            x = input("Width: ")
+            y = input("Height: ")
+            if coordinates(x) and coordinates(y):
+                break
             x = int(x)
             y = int(y)
-            totalSize = x * y
-            make_mines(mineNmr, x, y)
-                # totalSize = x * y
-                # while i <= int(mineNmr):
-                #     randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
-                #     mines.insert(0, randMine)
-                #     i += 1
+#           totalSize = x * y
+            mines = make_mines(mineNmr, x, y)
+            print("To end game type: end")
+            print(mines)
         
 #creates field        
             while lineCounter <= y:
@@ -127,44 +127,56 @@ def main():
                 if guess_validation(guess):
                     break
 
+
 #guessing and stuff
             while guess == "flag":
                 lineCounter = 0
                 while lineCounter <= int(y):    
                     print(BIGlist[x * lineCounter: x + (x * lineCounter)])
-                    lineCounter += 1              
-                flag = input("Choose a flag cordinate x y: ")
+                    lineCounter += 1
+                while True:
+                    flag = input("Choose a flag cordinate x y: ")
+                    if guess_validation(flag):
+                        break
+
+                if flag == "end":
+                    playing = False
+                    break
 
                 if flag == "guess":
                     while True:
                         guess = input("Guess a coordinate x y: ")
                         if guess_validation(guess):
                             break
-                else:
-                    if guess_validation(flag):
-                        flagX,flagY = flag.split(" ")
-                        trueFlag = (int(flagX) - 1) + (int(flagY) - 1) * x
-                        if 0 <= trueFlag < len(BIGlist):
-                            BIGlist[trueFlag] = "F"
 
-            #incorrect input gives false same for flag
-            #problem with trueGuess/flag 2 2 doesnt work
+                if guess_validation(flag):
+                    flagX, flagY = flag.split(" ")
+                    trueFlag = (int(flagX) - 1) + (int(flagY) - 1) * x
+                    if 0 <= trueFlag < len(BIGlist):
+                        BIGlist[trueFlag] = "F"
+            
+            if guess == "end" or flag == "end":
+                playing = False
+                break
+
             guessX, guessY = guess.split(" ")
             trueGuess = (int(guessX) - 1) + (int(guessY) - 1) * x
-            #print(trueGuess)
 
             if trueGuess < 0 or trueGuess >= len(BIGlist):
                 print("this isnt in the frame")
             else:
                 if trueGuess in mines:
-                    restart = input("You exploded do wish to play again?\n yes/no")
+                    restart = input("You exploded do wish to play again?\n yes/no \n")
                     if restart == "no":
+                        playing = False
                         break
+
                 else:
                     print("you live")
                     BIGlist[trueGuess] = "~"
 
             if guess == "end":
+                playing = False
                 break
 
 #end game and shop stuff

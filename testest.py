@@ -85,7 +85,9 @@ organs= ["a pint of blood","a pint of blood","a pint of blood","a pint of blood"
 organPrice=[297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
 
 def main():
-    while True:
+    playing = True
+
+    while playing:
         BIGlist = []
         mines = []
         carCounter = 1
@@ -101,12 +103,8 @@ def main():
             x = int(x)
             y = int(y)
             totalSize = x * y
-            make_mines(mineNmr, x, y)
-                # totalSize = x * y
-                # while i <= int(mineNmr):
-                #     randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
-                #     mines.insert(0, randMine)
-                #     i += 1
+            mines = make_mines(mineNmr, x, y)
+            print("To end game type: end")
         
 #creates field        
             while lineCounter <= y:
@@ -147,24 +145,24 @@ def main():
                         if 0 <= trueFlag < len(BIGlist):
                             BIGlist[trueFlag] = "F"
 
-            #incorrect input gives false same for flag
-            #problem with trueGuess/flag 2 2 doesnt work
             guessX, guessY = guess.split(" ")
             trueGuess = (int(guessX) - 1) + (int(guessY) - 1) * x
-            #print(trueGuess)
 
             if trueGuess < 0 or trueGuess >= len(BIGlist):
                 print("this isnt in the frame")
             else:
                 if trueGuess in mines:
-                    restart = input("You exploded do wish to play again?\n yes/no")
+                    restart = input("You exploded do wish to play again?\n yes/no \n")
                     if restart == "no":
+                        playing = False
                         break
+
                 else:
                     print("you live")
                     BIGlist[trueGuess] = "~"
 
             if guess == "end":
+                playing = False
                 break
 
 #end game and shop stuff

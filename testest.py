@@ -56,7 +56,7 @@ def coordinates(a):
 
 def make_mines(mineNmr, x, y):
     mines = []
-    i = 1
+    i = 0
 
     while i <= int(mineNmr):
         randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
@@ -74,18 +74,19 @@ def guess_validation(a):
     print("Invalid input")
     return False
 
-amountOfBombsPurchased = 0
-items = []
-allItems = ["a","b","c","d"]
-itemPrice = [1,2,3,4]
-cashDollerMoney =0 
-bigCLICKS = 1
-bigClickSize = 2
-organs= ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
-organPrice=[297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
+
 
 def main():
     playing = True
+    amountOfBombsPurchased = 0
+    items = []
+    allItems = ["a","b","c","d"]
+    itemPrice = [1,2,3,4]
+    cashDollerMoney = 0 
+    bigCLICKS = 1
+    bigClickSize = 2
+    organs = ["a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","a pint of blood","ligaments","bones","64,516 dm of skin","64,516 dm of skin","64,516 dm of skin","cornea","cornea","liver","kidney","kidney","lung","lung","heart"]
+    organPrice = [297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,297.46,4758,62,6611.25,7932.33,7932.33,7932.33,19830.83,19830.83,56195.62,138815.77,138815.77,272343.33,272343.33,562340.87]
 
     while playing:
         BIGlist = []

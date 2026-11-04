@@ -1,5 +1,3 @@
-#uhmmm de mines werken niet ik heb geen mines maar de rest werkt nu wel volgens mij
-
 import random
 
 def shop():
@@ -65,7 +63,7 @@ def make_mines(mineNmr, x, y):
     return mines
 
 def guess_validation(a):
-    if a == "flag":
+    if a == "flag" or a == "end":
         return True
     b = a.split(" ")
     if len(b) == 2:
@@ -98,14 +96,17 @@ def main():
         i = 1
 
 #amound of mines
-        x = input("Width: ")
-        y = input("Height: ")
-        if coordinates(x) and coordinates(y):
+        while True:
+            x = input("Width: ")
+            y = input("Height: ")
+            if coordinates(x) and coordinates(y):
+                break
             x = int(x)
             y = int(y)
-            totalSize = x * y
+#           totalSize = x * y
             mines = make_mines(mineNmr, x, y)
             print("To end game type: end")
+            print(mines)
         
 #creates field        
             while lineCounter <= y:
@@ -126,25 +127,37 @@ def main():
                 if guess_validation(guess):
                     break
 
+
 #guessing and stuff
             while guess == "flag":
                 lineCounter = 0
                 while lineCounter <= int(y):    
                     print(BIGlist[x * lineCounter: x + (x * lineCounter)])
-                    lineCounter += 1              
-                flag = input("Choose a flag cordinate x y: ")
+                    lineCounter += 1
+                while True:
+                    flag = input("Choose a flag cordinate x y: ")
+                    if guess_validation(flag):
+                        break
+
+                if flag == "end":
+                    playing = False
+                    break
 
                 if flag == "guess":
                     while True:
                         guess = input("Guess a coordinate x y: ")
                         if guess_validation(guess):
                             break
-                else:
-                    if guess_validation(flag):
-                        flagX,flagY = flag.split(" ")
-                        trueFlag = (int(flagX) - 1) + (int(flagY) - 1) * x
-                        if 0 <= trueFlag < len(BIGlist):
-                            BIGlist[trueFlag] = "F"
+
+                if guess_validation(flag):
+                    flagX, flagY = flag.split(" ")
+                    trueFlag = (int(flagX) - 1) + (int(flagY) - 1) * x
+                    if 0 <= trueFlag < len(BIGlist):
+                        BIGlist[trueFlag] = "F"
+            
+            if guess == "end" or flag == "end":
+                playing = False
+                break
 
             guessX, guessY = guess.split(" ")
             trueGuess = (int(guessX) - 1) + (int(guessY) - 1) * x

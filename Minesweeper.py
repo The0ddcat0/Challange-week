@@ -17,9 +17,9 @@ def shop():
     `-----' `--' `--'   `-----' `--'      
         """)
     print(f" you have {cashDollerMoney} silly linguini dollars")
-    shop1 = random.randint(0,len(allItems)-1)
-    shop2 = random.randint(0,len(allItems)-1)
-    shop3 = random.randint(0,len(allItems)-1)
+    shop1 = random.randint(0, len(allItems) - 1)
+    shop2 = random.randint(0, len(allItems) - 1)
+    shop3 = random.randint(0, len(allItems) - 1)
     print ('to purchase type the number infront of the item')
     print (f"1  {allItems[shop1]}  sl$ {itemPrice[shop1]}")
     print (f"2  {allItems[shop2]}  sl$ {itemPrice[shop2]}")
@@ -58,68 +58,88 @@ def organtrade():
     if cashDollerMoney<0:
         print("uh oh you defaulted")    
     i=0
-    while i < len(organs)and cashDollerMoney<0:
-        if cashDollerMoney+list(organs.values())[i]>=0:
+    while i < len(organs) and cashDollerMoney<0:
+        if cashDollerMoney + list(organs.values())[i] >= 0:
             print(f"the loanshark took {list(organs.keys())[i]}")
             organs.pop(list(organs.keys())[i])
-            cashDollerMoney=cashDollerMoney+list(organs.values())[i]
+            cashDollerMoney = cashDollerMoney + list(organs.values())[i]
         i+=1
 
 def mortis():
     global deathCounter,cashDollerMoney,pedegry
-    if deathCounter<=0:
-        print ("you died l bozo")
-    if len(pedegry)>0:
-        i=0
-        oldestChild=0
-        oldestChildAge=0
-        while len (pedegry)-1>=i:
-            if list(pedegry.values())[i]>oldestChildAge:
-                oldestChild=list(pedegry.keys())[i]
-                oldestChildAge=list(pedegry.values())[i]
-        print (f"you are now {oldestChild} you are {oldestChildAge/12}and have all your organs and inhearited {cashDollerMoney} sl$")
+    if deathCounter <= 0:
+        print("you died l bozo")
+    if len(pedegry) > 0:
+        i = 0
+        oldestChild = 0
+        oldestChildAge = 0
+        while len(pedegry) - 1 >= i:
+            if list(pedegry.values())[i] > oldestChildAge:
+                oldestChild = list(pedegry.keys())[i]
+                oldestChildAge = list(pedegry.values())[i]
+        print (f"you are now {oldestChild} you are {oldestChildAge/12} and have all your organs and inhearited {cashDollerMoney} sl$")
 
 def timePassesEverSlowly():
     global pregoLength,pedegry
     for i in pregoLength:
-        pregoLength[i]+=1
+        pregoLength[i] += 1
     for i in pedegry:
-        pedegry[i]+=1
-        if pedegry[i].values()%12==0:
-            print (f"your child {pedegry[i].keys()}turned {pedegry[i].keys()/12} years old today but you missed their birthday because you were sweeping mines.good job, keep going")
+        pedegry[i] += 1
+        if pedegry[i].values() % 12 == 0:
+            print (f"your child {pedegry[i].keys()} turned {pedegry[i].keys()/12} years old today but you missed their birthday because you were sweeping mines.good job, keep going")
 
 def givingbirth():
     global pregoLenght,pedegry
     if 9 in pregoLength.values:
         gender=random.randint(1,11)
-        if gender<5:
-            gender="male"
-        elif gender<10:
-            gender="female"
+        if gender < 5:
+            gender = "male"
+        elif gender < 10:
+            gender = "female"
         else:
             gender = "intersex"
-        name =input(f"name your {gender} child")
-        pedegry[name]=0
+        name = input(f"name your {gender} child")
+        pedegry[name] = 0
 
 def gettingYourWifePregnant():
     global wife,pregnant
     if wife > 0 and pregnant != wife :
         i=0
         while i <= wife - pregnant:
-            if random.randint(1,5)==1:
-                pregnant+=1
-                pregnant[pregnant]=1
+            if random.randint(1,5) == 1:
+                pregnant += 1
+                pregnant[pregnant] = 1
 
 def sellingTheKidsForGamblingDebts():
     global pedegry, cashDollerMoney
-    if len(pedegry)>0:
+    if len(pedegry) > 0:
         sellingTheKids=input("do you wanna sell any kids Y/N")
-        if sellingTheKids=="Y":
+        if sellingTheKids == "Y":
             for i in pedegry.keys():
                 ForGamblingDebts=input(f"do you want to sell {i} Y/N")
-                if ForGamblingDebts=="":
+                if ForGamblingDebts == "":
                     pedegry.pop(i)
-                    cashDollerMoney+=babyPrices
+                    cashDollerMoney += babyPrices
+
+def make_mines(mineNmr, x, y):
+    mines = []
+    i = 0
+
+    while i <= int(mineNmr):
+        randMine = (random.randint(1, y) - 1) * x + random.randint(1, x)
+        mines.insert(0, randMine)
+        i += 1    
+    return mines
+
+def guess_validation(a):
+    if a == "flag" or a == "end":
+        return True
+    b = a.split(" ")
+    if len(b) == 2:
+        if b[0].isdigit() and b[1].isdigit():
+            return True
+    print("Invalid input")
+    return False
 
 
 babyPrices=20000
@@ -128,79 +148,111 @@ items = []
 allItems = ["a","b","c","d"]
 itemPrice = [1,2,3,4]
 mineNmr = 3
-cashDollerMoney =0 
+cashDollerMoney = 0 
 bigCLICKS = 1
 bigClickSize = 2
-restart = ""
-guess = ""
 
 organs = {"a pint of blood":297.46,"a second pint of blood":297.46,"a third pint of blood":297.46,"a forth pint of blood":297.46,"a fifth pint of blood":297.46,"a sixth pint of blood":297.46,"a seventh pint of blood":297.46,"a eighth pint of blood":297.46,"a nineth pint of blood":297.46," your last pint of blood":297.46," your ligaments":4758.62,"your bones":4758.62,"64,516 dm of your skin":7932.33,"most of your skin":7932.33,"the last of your skin":7932.33,"your left cornea":19830.83,"your right cornea":19830.83,"your liver":56195.62,"left kidney":138815.77,"your right kidney":138815.77,"your left lung":272343.33,"your right lung":272343.33,"your heart":562340.87}
-while True:
-    BIGlist = []
-    mines = []
-    carCounter = 1
-    lineCounter = 1
 
-
-    x = input("Width: ")
-    y = input("Height: ")
+def main():
     
-    i = 1
+    while playing:
+        BIGlist = []
+        mines = []
+        carCounter = 1
+        lineCounter = 1
+        mineNmr = 3
 
+        i = 1
 
-    if coordinates(x) and coordinates(y):
-        x = int(x)
-        y = int(y)
-        totalSize = x**y
-        print("To end the game type: end")
-        while i <= int(mineNmr):
-             randMine = (random.randint(1,y)-1)**x+random.randint(1,x)
-             mines.insert(0,randMine)
-             i += 1
-    
-       
-        while lineCounter <= y:
-            if carCounter >= x:
-                carCounter = 0
-                lineCounter = lineCounter + 1
-            BIGlist.append("0")
-            carCounter = carCounter + 1
-            #print(carCounter)
-    while "0" in BIGlist:
-        lineCounter = 0
-        while lineCounter <= int(y):
-            print(BIGlist[x*lineCounter:x+(x*lineCounter)])
-            lineCounter += 1  
-        #print(BIGlist)
-        guess = input("Guess a coordinate x y: ")    
-        while guess == "flag":
+#amound of mines
+        while True:
+            x = input("Width: ")
+            y = input("Height: ")
+            if coordinates(x) and coordinates(y):
+                break
+            x = int(x)
+            y = int(y)
+#           totalSize = x * y
+            mines = make_mines(mineNmr, x, y)
+            print("To end game type: end")
+            print(mines)
+        
+#creates field        
+            while lineCounter <= y:
+                if carCounter >= x:
+                    carCounter = 0
+                    lineCounter = lineCounter + 1
+                BIGlist.append("0")
+                carCounter = carCounter + 1
+                #print(carCounter)
+        while "0" in BIGlist:
             lineCounter = 0
-            while lineCounter <= int(y):    
-                print(BIGlist[x*lineCounter:x+(x*lineCounter)])
-                lineCounter += 1              
-            flag = input("Choose a flag cordinate x y: ")
-            if flag == "guess":
-                guess = input("Guess a coordinate x y: ")   
+            while lineCounter <= int(y):
+                print(BIGlist[x * lineCounter: x + (x * lineCounter)])
+                lineCounter += 1  
+            #print(BIGlist)
+            while True:
+                guess = input("Guess a coordinate x y: ")
+                if guess_validation(guess):
+                    break
+
+#guessing and stuff
+            while guess == "flag":
+                lineCounter = 0
+                while lineCounter <= int(y):    
+                    print(BIGlist[x * lineCounter: x + (x * lineCounter)])
+                    lineCounter += 1
+                while True:
+                    flag = input("Choose a flag cordinate x y: ")
+                    if guess_validation(flag):
+                        break
+
+                if flag == "end":
+                    playing = False
+                    break
+
+                if flag == "guess":
+                    while True:
+                        guess = input("Guess a coordinate x y: ")
+                        if guess_validation(guess):
+                            break
+
+                if guess_validation(flag):
+                    flagX, flagY = flag.split(" ")
+                    trueFlag = (int(flagX) - 1) + (int(flagY) - 1) * x
+                    if 0 <= trueFlag < len(BIGlist):
+                        BIGlist[trueFlag] = "F"
+            
+            if guess == "end" or flag == "end":
+                playing = False
+                break
+
+            guessX, guessY = guess.split(" ")
+            trueGuess = (int(guessX) - 1) + (int(guessY) - 1) * x
+
+            if trueGuess < 0 or trueGuess >= len(BIGlist):
+                print("this isnt in the frame")
             else:
-                flagX,flagY = flag.split(" ")       
-                trueFlag = int(flagX) + (int(flagY)-1) ** x
-                flag = int(flagX) -1 + (int(flagY)-1)  ** x
-                BIGlist[flag] = "F"
-             
-        guessX,guessY = guess.split(" ")
-        trueGuess = int(guessX) + (int(guessY)-1) ** x
-        if trueGuess in mines:
-            restart = input("You exploded do wish to play again?\n yes/no")
+                if trueGuess in mines:
+                    restart = input("You exploded do wish to play again?\n yes/no \n")
+                    if restart == "no":
+                        playing = False
+                        break
 
-        else:
-            print("you live")
-            BIGlist[trueGuess] = "~"
+                else:
+                    print("you live")
+                    BIGlist[trueGuess] = "~"
 
-        if guess == "end" or restart == "no":
-            break
+            if guess == "end":
+                playing = False
+                break
+
     if "0" not in BIGlist:
        # cashDollerMoney = cashDollerMoney +((mineNmr**5)//(x**y))
         mineNmr += 1
         shop()
         organtrade()
-                    
+
+if __name__ == "__main__":
+    main()

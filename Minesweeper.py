@@ -49,9 +49,8 @@ def shop():
 def coordinates(a):
     if a.isdigit():
         return True
-    else:
-        print("Invalid input")
-        return False
+    print("Invalid input")
+    return False
 
 def organtrade():
     global cashDollerMoney,organs
@@ -132,7 +131,7 @@ def make_mines(mineNmr, x, y):
     return mines
 
 def guess_validation(a):
-    if a == "flag" or a == "end":
+    if a == "flag" or a == "end" or a == "guess":
         return True
     b = a.split(" ")
     if len(b) == 2:

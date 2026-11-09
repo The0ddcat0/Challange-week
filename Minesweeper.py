@@ -155,7 +155,7 @@ bigClickSize = 2
 organs = {"a pint of blood":297.46,"a second pint of blood":297.46,"a third pint of blood":297.46,"a forth pint of blood":297.46,"a fifth pint of blood":297.46,"a sixth pint of blood":297.46,"a seventh pint of blood":297.46,"a eighth pint of blood":297.46,"a nineth pint of blood":297.46," your last pint of blood":297.46," your ligaments":4758.62,"your bones":4758.62,"64,516 dm of your skin":7932.33,"most of your skin":7932.33,"the last of your skin":7932.33,"your left cornea":19830.83,"your right cornea":19830.83,"your liver":56195.62,"left kidney":138815.77,"your right kidney":138815.77,"your left lung":272343.33,"your right lung":272343.33,"your heart":562340.87}
 
 def main():
-    
+    playing=True
     while playing:
         BIGlist = []
         mines = []
@@ -166,17 +166,14 @@ def main():
         i = 1
 
 #amound of mines
-        while True:
+        if True:
             x = input("Width: ")
             y = input("Height: ")
-            if coordinates(x) and coordinates(y):
-                break
             x = int(x)
             y = int(y)
 #           totalSize = x * y
             mines = make_mines(mineNmr, x, y)
             print("To end game type: end")
-            print(mines)
         
 #creates field        
             while lineCounter <= y:
@@ -208,9 +205,6 @@ def main():
                     if guess_validation(flag):
                         break
 
-                if flag == "end":
-                    playing = False
-                    break
 
                 if flag == "guess":
                     while True:
@@ -224,7 +218,7 @@ def main():
                     if 0 <= trueFlag < len(BIGlist):
                         BIGlist[trueFlag] = "F"
             
-            if guess == "end" or flag == "end":
+            if guess == "end":
                 playing = False
                 break
 
